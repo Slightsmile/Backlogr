@@ -1,9 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useLibraryData } from './hooks/useLibraryData';
 import { ProfileStats } from './components/ProfileStats';
 import { StatsDashboard } from './components/StatsDashboard';
 import { FilterBar } from './components/FilterBar';
 import { GameGrid } from './components/GameGrid';
+import { Pagination } from './components/Pagination';
 
 function App() {
   const { data, loading, error } = useLibraryData();
@@ -13,6 +14,10 @@ function App() {
   const [platformFilter, setPlatformFilter] = useState('All');
   const [statusFilter, setStatusFilter] = useState('All');
   const [sortBy, setSortBy] = useState('name');
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 24; // 6 columns × 4 rows
 
   // Derive unique options
   const platforms = useMemo(() => Array.from(new Set(data.map(g => g.platform))).sort(), [data]);
@@ -44,6 +49,17 @@ function App() {
 
     return result;
   }, [data, search, platformFilter, statusFilter, sortBy]);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, platformFilter, statusFilter, sortBy]);
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredGames.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedGames = filteredGames.slice(startIndex, endIndex);
 
   if (loading) {
     return (
@@ -101,7 +117,15 @@ function App() {
           statuses={statuses}
         />
 
-        <GameGrid games={filteredGames} />
+        <GameGrid games={paginatedGames} />
+
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        )}
 
         <footer className="mt-20 text-center text-slate-600 text-xs pb-8 border-t border-slate-800 pt-8">
           <p>Open Source Game Library Showcase • Built with React & Tailwind</p>
