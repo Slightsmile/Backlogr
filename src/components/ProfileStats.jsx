@@ -4,7 +4,10 @@ export const ProfileStats = ({ games }) => {
     // Calculate stats
     const totalOwned = games.length;
     const totalPlayed = games.filter(g => g.status === 'Completed').length;
-    const totalWasted = games.reduce((acc, game) => acc + game.price, 0);
+
+    // Use the pre-calculated totalWasted from the data hook
+    // This ensures we only sum games from "Games Bought" and "Prime Gaming" sections
+    const totalWasted = games.totalWasted || 0;
 
     // Platform counts with more comprehensive matching
     const platformCounts = games.reduce((acc, game) => {

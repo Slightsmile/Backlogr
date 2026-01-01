@@ -26,6 +26,8 @@ export const useLibraryData = () => {
 
                 // Create a price map from "Games Bought" (cols E-G: indices 4,5,6) and "Prime Gaming" (cols I-K: indices 8,9,10)
                 const priceMap = new Map();
+                const boughtGames = []; // Track actual bought games for totalWasted calculation
+
                 dataRows.forEach(row => {
                     // Games Bought section: Name in col E (index 4), Price in col G (index 6)
                     const boughtName = row[4];
@@ -34,6 +36,7 @@ export const useLibraryData = () => {
                         const priceVal = parseFloat((boughtPrice || '0').toString().replace(/[^0-9.]/g, ''));
                         if (!isNaN(priceVal) && priceVal > 0) {
                             priceMap.set(boughtName.toLowerCase().trim(), priceVal);
+                            boughtGames.push({ title: boughtName, price: priceVal });
                         }
                     }
 
@@ -44,6 +47,7 @@ export const useLibraryData = () => {
                         const priceVal = parseFloat((primePrice || '0').toString().replace(/[^0-9.]/g, ''));
                         if (!isNaN(priceVal) && priceVal > 0) {
                             priceMap.set(primeName.toLowerCase().trim(), priceVal);
+                            boughtGames.push({ title: primeName, price: priceVal });
                         }
                     }
                 });
@@ -71,6 +75,10 @@ export const useLibraryData = () => {
                             hours: 0,
                         };
                     });
+
+                // Add totalWasted to the data for use in ProfileStats
+                normalized.totalWasted = boughtGames.reduce((acc, game) => acc + game.price, 0);
+
                 setData(normalized);
             } catch (err) {
                 console.error("Failed to load data:", err);
