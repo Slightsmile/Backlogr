@@ -6,8 +6,8 @@ export const fetchLibraryData = async () => {
     return new Promise((resolve, reject) => {
         Papa.parse(SHEET_URL, {
             download: true,
-            header: true,
-            skipEmptyLines: true,
+            header: false, // parsing manually due to complex sheet structure
+            skipEmptyLines: false, // ensure we don't lose context
             complete: (results) => {
                 resolve(results.data);
             },
