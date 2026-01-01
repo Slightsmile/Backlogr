@@ -89,11 +89,6 @@ function App() {
       <div className="max-w-[1600px] mx-auto px-4 py-8">
         <header className="mb-8 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
           <div>
-            {!import.meta.env.VITE_RAWG_API_KEY && (
-              <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-2 rounded mb-4 text-sm font-mono text-center">
-                WARNING: VITE_RAWG_API_KEY is missing in .env
-              </div>
-            )}
             <h1 className="text-4xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400">
               BACKLOGR
             </h1>
@@ -109,8 +104,8 @@ function App() {
               onClick={reload}
               disabled={loading}
               className={`p-2 rounded-full border transition-all ${loading
-                  ? 'bg-slate-800 border-slate-700 text-slate-600 cursor-not-allowed'
-                  : 'bg-slate-800 border-slate-600 text-slate-300 hover:bg-slate-700 hover:border-blue-500 hover:text-blue-400'
+                ? 'bg-slate-800 border-slate-700 text-slate-600 cursor-not-allowed'
+                : 'bg-slate-800 border-slate-600 text-slate-300 hover:bg-slate-700 hover:border-blue-500 hover:text-blue-400'
                 }`}
               title="Reload data from Google Sheet"
             >
