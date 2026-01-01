@@ -3,7 +3,7 @@ import { Gamepad2, Zap, ShoppingCart } from 'lucide-react';
 export const ProfileStats = ({ games }) => {
     // Calculate stats
     const totalOwned = games.length;
-    const totalPlayed = games.filter(g => g.status === 'Playing' || g.status === 'Completed').length;
+    const totalPlayed = games.filter(g => g.status === 'Completed').length;
     const totalWasted = games.reduce((acc, game) => acc + game.price, 0);
 
     // Platform counts with more comprehensive matching

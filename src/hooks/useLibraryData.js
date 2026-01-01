@@ -29,20 +29,20 @@ export const useLibraryData = () => {
                     }
                 });
 
-                // Parse Main List (Cols A=0 (Name), B=1 (Platform), C=2 (Played?), D=3 (Completed?))
+                // Parse Main List (Cols A=0 (Name), B=1 (Platform), C=2 (Completed), D=3 (Backlog))
                 const normalized = dataRows
                     .filter(row => row[0]) // Filter empty names
                     .map((row, index) => {
                         const title = row[0];
                         const platform = row[1] || 'Other';
 
-                        let status = 'Backlog';
-                        const col2 = (row[2] || '').toUpperCase(); // Played/Planning -> Playing?
-                        const col3 = (row[3] || '').toUpperCase(); // Completed?
+                        let status = 'Archived'; // Default to Archived if neither Completed nor Backlog
+                        const col2 = (row[2] || '').toUpperCase(); // Completed
+                        const col3 = (row[3] || '').toUpperCase(); // Backlog
 
-                        // Logic assumption: Col 3 (TRUE) = Completed, Col 2 (TRUE) = Playing
-                        if (col3 === 'TRUE') status = 'Completed';
-                        else if (col2 === 'TRUE') status = 'Playing';
+                        // Logic: Col 2 (TRUE) = Completed, Col 3 (TRUE) = Backlog, else Archived
+                        if (col2 === 'TRUE') status = 'Completed';
+                        else if (col3 === 'TRUE') status = 'Backlog';
 
                         const price = priceMap.get(title.toLowerCase().trim()) || 0;
 
