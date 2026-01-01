@@ -86,18 +86,18 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-200">
-      <div className="max-w-[1600px] mx-auto px-4 py-8">
-        <header className="mb-8 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
+      <div className="max-w-[1600px] mx-auto px-3 sm:px-4 py-4 sm:py-8">
+        <header className="mb-4 sm:mb-8 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-3 sm:gap-0">
           <div>
-            <h1 className="text-4xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400">
+            <h1 className="text-3xl sm:text-4xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400">
               BACKLOGR
             </h1>
-            <p className="text-slate-500 text-sm font-medium tracking-wide mt-1">GAME COLLECTION TRACKER</p>
+            <p className="text-slate-500 text-xs sm:text-sm font-medium tracking-wide mt-1">GAME COLLECTION TRACKER</p>
           </div>
 
           {/* Summary Chip and Reload Button */}
-          <div className="mt-4 sm:mt-0 flex items-center gap-3">
-            <div className="bg-slate-800 px-4 py-2 rounded-full border border-slate-700 text-xs font-mono text-slate-400">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="bg-slate-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-slate-700 text-xs font-mono text-slate-400">
               v1.0 • {data.length} Items
             </div>
             <button
@@ -147,7 +147,7 @@ function App() {
           />
         )}
 
-        <footer className="mt-20 text-center text-slate-600 text-xs pb-8 border-t border-slate-800 pt-8">
+        <footer className="mt-12 sm:mt-20 text-center text-slate-600 text-xs pb-6 sm:pb-8 border-t border-slate-800 pt-6 sm:pt-8">
           <p>Open Source Game Library Showcase • Built with React & Tailwind</p>
         </footer>
       </div>

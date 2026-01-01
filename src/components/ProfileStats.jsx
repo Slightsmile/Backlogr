@@ -29,32 +29,32 @@ export const ProfileStats = ({ games }) => {
         return acc;
     }, {});
 
-    // Compact stat card component with optional icon
+    // Compact stat card component with optional icon - mobile optimized
     const StatCard = ({ label, value, sublabel, colorClass = 'border-blue-500', icon: Icon }) => (
-        <div className={`bg-slate-800/90 backdrop-blur-sm rounded-lg p-3 border-l-4 ${colorClass} hover:bg-slate-800 transition-colors`}>
-            <div className="flex items-center justify-between mb-1">
-                <p className="text-[9px] uppercase tracking-wider font-bold text-slate-500">{label}</p>
-                {Icon && <Icon className="w-4 h-4 text-slate-600" />}
+        <div className={`bg-slate-800/90 backdrop-blur-sm rounded-lg p-2 sm:p-3 border-l-4 ${colorClass} hover:bg-slate-800 transition-colors`}>
+            <div className="flex items-center justify-between mb-0.5 sm:mb-1">
+                <p className="text-[8px] sm:text-[9px] uppercase tracking-wider font-bold text-slate-500">{label}</p>
+                {Icon && <Icon className="w-3 h-3 sm:w-4 sm:h-4 text-slate-600" />}
             </div>
-            <p className="text-2xl font-bold text-slate-100 mb-0">{value}</p>
-            <p className="text-[10px] text-slate-500">{sublabel}</p>
+            <p className="text-lg sm:text-2xl font-bold text-slate-100 mb-0">{value}</p>
+            <p className="text-[9px] sm:text-[10px] text-slate-500">{sublabel}</p>
         </div>
     );
 
     return (
-        <div className="mb-6">
-            <div className="flex flex-col md:flex-row gap-4 items-center md:items-start justify-end">
-                {/* Profile Picture - Left Side */}
+        <div className="mb-4 sm:mb-6">
+            <div className="flex flex-col md:flex-row gap-3 sm:gap-4 items-center md:items-start justify-end">
+                {/* Profile Picture - Smaller on mobile */}
                 <div className="flex-shrink-0 md:order-1">
                     <img
                         src="/profile.jpg"
                         alt="Profile"
-                        className="w-40 h-40 rounded-full object-cover border-4 border-slate-700 shadow-xl"
+                        className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full object-cover border-2 sm:border-4 border-slate-700 shadow-xl"
                     />
                 </div>
 
-                {/* Stats Grid - Right Side - Compact 3x3 Layout */}
-                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-3 md:order-2 max-w-4xl md:ml-auto">
+                {/* Stats Grid - 2 columns on mobile, 3 on tablet+ */}
+                <div className="w-full md:flex-1 grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:order-2 max-w-4xl md:ml-auto">
                     {/* Row 1: Total Games, Played, Total Wasted */}
                     <StatCard
                         label="TOTAL GAMES"
