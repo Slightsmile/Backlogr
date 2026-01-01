@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useLibraryData } from './hooks/useLibraryData';
+import { ProfileStats } from './components/ProfileStats';
 import { StatsDashboard } from './components/StatsDashboard';
 import { FilterBar } from './components/FilterBar';
 import { GameGrid } from './components/GameGrid';
@@ -89,7 +90,7 @@ function App() {
           </div>
         </header>
 
-        <StatsDashboard games={data} />
+        <ProfileStats games={data} />
 
         <FilterBar
           search={search} setSearch={setSearch}
