@@ -7,7 +7,7 @@ import { GameGrid } from './components/GameGrid';
 import { Pagination } from './components/Pagination';
 
 function App() {
-  const { data, loading, error } = useLibraryData();
+  const { data, loading, error, reload } = useLibraryData();
 
   // Filters state
   const [search, setSearch] = useState('');
@@ -100,9 +100,34 @@ function App() {
             <p className="text-slate-500 text-sm font-medium tracking-wide mt-1">GAME COLLECTION TRACKER</p>
           </div>
 
-          {/* Summary Chip */}
-          <div className="mt-4 sm:mt-0 bg-slate-800 px-4 py-2 rounded-full border border-slate-700 text-xs font-mono text-slate-400">
-            v1.0 • {data.length} Items
+          {/* Summary Chip and Reload Button */}
+          <div className="mt-4 sm:mt-0 flex items-center gap-3">
+            <div className="bg-slate-800 px-4 py-2 rounded-full border border-slate-700 text-xs font-mono text-slate-400">
+              v1.0 • {data.length} Items
+            </div>
+            <button
+              onClick={reload}
+              disabled={loading}
+              className={`p-2 rounded-full border transition-all ${loading
+                  ? 'bg-slate-800 border-slate-700 text-slate-600 cursor-not-allowed'
+                  : 'bg-slate-800 border-slate-600 text-slate-300 hover:bg-slate-700 hover:border-blue-500 hover:text-blue-400'
+                }`}
+              title="Reload data from Google Sheet"
+            >
+              <svg
+                className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+            </button>
           </div>
         </header>
 
