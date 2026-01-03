@@ -51,6 +51,75 @@ export const ProfileStats = ({ games }) => {
                         alt="Profile"
                         className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full object-cover border-2 sm:border-4 border-slate-700 shadow-xl"
                     />
+
+                    {/* Social Links */}
+                    <div className="flex justify-center gap-3 sm:gap-4 mt-5 sm:mt-6">
+                        <a
+                            href="https://thedoublea.bio.link/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative"
+                            title="Portfolio"
+                        >
+                            <img
+                                src="/portfolio-icon.svg"
+                                alt="Portfolio"
+                                className="w-10 h-10 sm:w-12 sm:h-12 opacity-70 hover:opacity-100 transition-all hover:scale-110"
+                            />
+                        </a>
+                        <a
+                            href="https://www.youtube.com/@thedouble.a28"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative"
+                            title="YouTube"
+                        >
+                            <img
+                                src="/youtube-icon.svg"
+                                alt="YouTube"
+                                className="w-10 h-10 sm:w-12 sm:h-12 opacity-70 hover:opacity-100 transition-all hover:scale-110"
+                            />
+                        </a>
+                        <a
+                            href="https://www.rankone.global/thedoublea"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative"
+                            title="RankOne"
+                        >
+                            <img
+                                src="/rankone-icon.svg"
+                                alt="RankOne"
+                                className="w-10 h-10 sm:w-12 sm:h-12 opacity-70 hover:opacity-100 transition-all hover:scale-110"
+                            />
+                        </a>
+                        <a
+                            href="https://steamcommunity.com/id/thedoublea28/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative"
+                            title="Steam"
+                        >
+                            <img
+                                src="/steam-icon.svg"
+                                alt="Steam"
+                                className="w-10 h-10 sm:w-12 sm:h-12 opacity-70 hover:opacity-100 transition-all hover:scale-110"
+                            />
+                        </a>
+                        <a
+                            href="https://www.gog.com/u/TheDoubleA"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative"
+                            title="GOG"
+                        >
+                            <img
+                                src="/gog-icon.svg"
+                                alt="GOG"
+                                className="w-10 h-10 sm:w-12 sm:h-12 opacity-70 hover:opacity-100 transition-all hover:scale-110"
+                            />
+                        </a>
+                    </div>
                 </div>
 
                 {/* Stats Grid - 2 columns on mobile, 3 on tablet+ */}
