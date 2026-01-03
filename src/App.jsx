@@ -105,11 +105,17 @@ function App() {
             <p className="text-slate-500 text-xs sm:text-sm font-medium tracking-wide mt-1 group-hover:text-slate-400 transition-colors">GAME COLLECTION TRACKER</p>
           </div>
 
-          {/* Summary Chip and Reload Button */}
+          {/* Sheet Link and Reload Button */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="bg-slate-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-slate-700 text-xs font-mono text-slate-400">
-              v1.0 • {data.length} Items
-            </div>
+            <a
+              href="https://docs.google.com/spreadsheets/d/1x0zCLkBLpcGFXCJhe239hoMEtccLDpxFLIdgDxHb6x8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-slate-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-slate-700 text-xs font-mono text-slate-400 hover:bg-slate-700 hover:border-blue-500 hover:text-blue-400 transition-all"
+              title="View Google Sheet"
+            >
+              Sheet
+            </a>
             <button
               onClick={reload}
               disabled={loading}
