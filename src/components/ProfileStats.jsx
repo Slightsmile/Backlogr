@@ -3,7 +3,7 @@ import { Gamepad2, Zap, ShoppingCart } from 'lucide-react';
 export const ProfileStats = ({ games }) => {
     // Calculate stats
     const totalOwned = games.length;
-    const totalPlayed = games.filter(g => g.status === 'Completed').length;
+    const totalPlayed = games.filter(g => g.status === 'Completed' || g.status === 'Played').length;
 
     // Use the pre-calculated totalWasted from the data hook
     // This ensures we only sum games from "Games Bought" and "Prime Gaming" sections
