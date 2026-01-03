@@ -15,9 +15,13 @@ export const GameGrid = ({ games }) => {
             layout
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"
         >
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {games.map((game, index) => (
-                    <GameCard key={game.id || index} game={game} index={index} />
+                    <GameCard
+                        key={`${game.title}-${index}`}
+                        game={game}
+                        index={index}
+                    />
                 ))}
             </AnimatePresence>
         </motion.div>

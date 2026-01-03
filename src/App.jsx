@@ -88,11 +88,21 @@ function App() {
     <div className="min-h-screen bg-slate-900 text-slate-200">
       <div className="max-w-[1600px] mx-auto px-3 sm:px-4 py-4 sm:py-8">
         <header className="mb-4 sm:mb-8 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-3 sm:gap-0">
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400">
+          <div
+            onClick={() => {
+              setSearch('');
+              setPlatformFilter('All');
+              setStatusFilter('All');
+              setSortBy('name');
+              setCurrentPage(1);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="cursor-pointer group"
+          >
+            <h1 className="text-3xl sm:text-4xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 group-hover:from-blue-300 group-hover:via-purple-300 group-hover:to-emerald-300 transition-all">
               BACKLOGR
             </h1>
-            <p className="text-slate-500 text-xs sm:text-sm font-medium tracking-wide mt-1">GAME COLLECTION TRACKER</p>
+            <p className="text-slate-500 text-xs sm:text-sm font-medium tracking-wide mt-1 group-hover:text-slate-400 transition-colors">GAME COLLECTION TRACKER</p>
           </div>
 
           {/* Summary Chip and Reload Button */}

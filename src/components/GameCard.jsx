@@ -24,7 +24,11 @@ export const GameCard = ({ game, index = 0 }) => {
                         src={coverUrl}
                         alt={game.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        loading="lazy"
+                        loading={index < 12 ? "eager" : "lazy"}
+                        decoding="async"
+                        onError={(e) => {
+                            e.target.style.display = 'none';
+                        }}
                     />
                 ) : (
                     /* Fallback Pattern */
