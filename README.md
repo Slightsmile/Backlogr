@@ -2,18 +2,20 @@
 
 A modern, beautiful game library tracker that syncs with your Google Sheets to manage and showcase your game collection. Built with React, Vite, and Tailwind CSS.
 
-![Backlogr Dashboard](public/profile.jpg)
+![Backlogr Dashboard](public/screenshot.png)
 
 ## ✨ Features
 
-- 📊 **Google Sheets Integration** - Automatically syncs your game library from a Google Sheet
-- 🎨 **Beautiful UI** - Modern, responsive design with smooth animations
+- 📊 **Google Sheets Integration** - Automatically syncs your game library from a Google Sheet with direct link access
+- 🎨 **Beautiful UI** - Modern, responsive design with smooth animations and mobile optimization
 - 🔍 **Advanced Filtering** - Search, filter by platform, status, and sort by name or price
-- 📈 **Statistics Dashboard** - Track total games, played count, money spent, and platform breakdown
+- 📈 **Statistics Dashboard** - Track total games, played count (Completed + Played), money spent, and platform breakdown
 - 🖼️ **Game Covers** - Automatically fetches game cover images from RAWG API
 - 📄 **Pagination** - Clean pagination for large game libraries (24 games per page)
-- 💰 **Budget Tracking** - Calculates total money spent on games from "Games Bought" section
+- 💰 **Budget Tracking** - Calculates total money spent on games from "Games Bought" and "Prime Gaming" sections
 - 🔄 **Manual Reload** - Refresh data from Google Sheets with a single click
+- 🎯 **Color-Coded Status Badges** - Visual status indicators (Completed: Purple, Playing: Green, Played: Blue, Backlog: Yellow, Archive: Red)
+- ❓ **Built-in Help** - Quick access to usage guide and manual
 
 ## 🚀 Getting Started
 
@@ -74,7 +76,7 @@ Your Google Sheet should have the following structure:
 ### Main Library (Columns A-C)
 | Name | Platform | Status |
 |------|----------|--------|
-| Game Title | Steam/Epic/GOG/etc | Played/Backlog/Archive |
+| Game Title | Steam/Epic/GOG/etc | Completed/Playing/Played/Backlog/Archive |
 
 ### Games Bought (Columns E-G)
 | Name | Platform | Price |
@@ -161,11 +163,24 @@ Add purchased games to the "Games Bought" section (columns E-G) with their price
 ### Filtering Games
 - **Search**: Type game names in the search bar
 - **Platform**: Filter by Steam, Epic, GOG, etc.
-- **Status**: Filter by Played, Backlog, or Archive
+- **Status**: Filter by Completed, Playing, Played, Backlog, or Archive
 - **Sort**: Sort by name or price (high/low)
+
+### Status Badge Colors
+- 🟣 **Completed** - Games you've finished
+- 🟢 **Playing** - Currently playing
+- 🔵 **Played** - Games you've played
+- 🟡 **Backlog** - Games waiting to be played
+- 🔴 **Archive** - Archived games
 
 ### Refreshing Data
 Click the reload button (🔄) in the top-right corner to fetch the latest data from your Google Sheet.
+
+### Accessing Your Sheet
+Click the "Sheet" link in the top-right corner to open your Google Sheet directly in a new tab.
+
+### Getting Help
+Click the help button (❓) next to the reload button for quick usage instructions and tips.
 
 ## 🏗️ Building for Production
 

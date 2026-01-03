@@ -8,6 +8,7 @@ import { Pagination } from './components/Pagination';
 
 function App() {
   const { data, loading, error, reload } = useLibraryData();
+  const [showHelp, setShowHelp] = useState(false);
 
   // Filters state
   const [search, setSearch] = useState('');
@@ -139,6 +140,25 @@ function App() {
                 />
               </svg>
             </button>
+            <button
+              onClick={() => setShowHelp(true)}
+              className="p-2 rounded-full border bg-slate-800 border-slate-600 text-slate-300 hover:bg-slate-700 hover:border-blue-500 hover:text-blue-400 transition-all"
+              title="Help & Usage Guide"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </button>
           </div>
         </header>
 
@@ -166,6 +186,114 @@ function App() {
         <footer className="mt-12 sm:mt-20 text-center text-slate-600 text-xs pb-6 sm:pb-8 border-t border-slate-800 pt-6 sm:pt-8">
           <p>Open Source Game Library Showcase • Built with React & Tailwind</p>
         </footer>
+
+        {/* Help Modal */}
+        {showHelp && (
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            onClick={() => setShowHelp(false)}
+          >
+            <div
+              className="bg-slate-800 rounded-xl border border-slate-700 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="sticky top-0 bg-slate-800 border-b border-slate-700 p-4 sm:p-6 flex justify-between items-center">
+                <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                  📖 Help & Usage Guide
+                </h2>
+                <button
+                  onClick={() => setShowHelp(false)}
+                  className="p-2 rounded-lg hover:bg-slate-700 transition-colors text-slate-400 hover:text-white"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="p-4 sm:p-6 space-y-6">
+                {/* Quick Start */}
+                <section>
+                  <h3 className="text-lg font-bold text-blue-400 mb-3 flex items-center gap-2">
+                    <span>🚀</span> Quick Start
+                  </h3>
+                  <ul className="space-y-2 text-slate-300 text-sm">
+                    <li className="flex gap-2"><span className="text-blue-400">•</span> Click the <strong className="text-white">"Sheet"</strong> link to view/edit your Google Sheet</li>
+                    <li className="flex gap-2"><span className="text-blue-400">•</span> Use the <strong className="text-white">reload button (🔄)</strong> to refresh data from your sheet</li>
+                    <li className="flex gap-2"><span className="text-blue-400">•</span> Click the <strong className="text-white">BACKLOGR</strong> title to reset all filters</li>
+                  </ul>
+                </section>
+
+                {/* Status Badges */}
+                <section>
+                  <h3 className="text-lg font-bold text-purple-400 mb-3 flex items-center gap-2">
+                    <span>🎯</span> Status Badge Colors
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                    <div className="flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 rounded-lg p-2">
+                      <span className="px-2 py-0.5 rounded text-xs font-semibold uppercase bg-purple-500/20 text-purple-300 border border-purple-500/50">Completed</span>
+                      <span className="text-slate-400">Finished games</span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-lg p-2">
+                      <span className="px-2 py-0.5 rounded text-xs font-semibold uppercase bg-green-500/20 text-green-300 border border-green-500/50">Playing</span>
+                      <span className="text-slate-400">Currently playing</span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 rounded-lg p-2">
+                      <span className="px-2 py-0.5 rounded text-xs font-semibold uppercase bg-blue-500/20 text-blue-300 border border-blue-500/50">Played</span>
+                      <span className="text-slate-400">Games you've played</span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-2">
+                      <span className="px-2 py-0.5 rounded text-xs font-semibold uppercase bg-yellow-500/20 text-yellow-300 border border-yellow-500/50">Backlog</span>
+                      <span className="text-slate-400">Waiting to play</span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-lg p-2">
+                      <span className="px-2 py-0.5 rounded text-xs font-semibold uppercase bg-red-500/20 text-red-300 border border-red-500/50">Archive</span>
+                      <span className="text-slate-400">Archived games</span>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Filtering */}
+                <section>
+                  <h3 className="text-lg font-bold text-emerald-400 mb-3 flex items-center gap-2">
+                    <span>🔍</span> Filtering & Search
+                  </h3>
+                  <ul className="space-y-2 text-slate-300 text-sm">
+                    <li className="flex gap-2"><span className="text-emerald-400">•</span> <strong className="text-white">Search:</strong> Type game names to filter instantly</li>
+                    <li className="flex gap-2"><span className="text-emerald-400">•</span> <strong className="text-white">Platform:</strong> Filter by Steam, Epic, GOG, etc.</li>
+                    <li className="flex gap-2"><span className="text-emerald-400">•</span> <strong className="text-white">Status:</strong> Filter by game completion status</li>
+                    <li className="flex gap-2"><span className="text-emerald-400">•</span> <strong className="text-white">Sort:</strong> Order by name or price (high/low)</li>
+                  </ul>
+                </section>
+
+                {/* Statistics */}
+                <section>
+                  <h3 className="text-lg font-bold text-yellow-400 mb-3 flex items-center gap-2">
+                    <span>📊</span> Statistics
+                  </h3>
+                  <ul className="space-y-2 text-slate-300 text-sm">
+                    <li className="flex gap-2"><span className="text-yellow-400">•</span> <strong className="text-white">Total Played:</strong> Counts both "Completed" and "Played" games</li>
+                    <li className="flex gap-2"><span className="text-yellow-400">•</span> <strong className="text-white">Total Wasted:</strong> Money spent from "Games Bought" & "Prime Gaming" sections</li>
+                    <li className="flex gap-2"><span className="text-yellow-400">•</span> <strong className="text-white">Platform Stats:</strong> Game count per platform (Steam, Epic, GOG, etc.)</li>
+                  </ul>
+                </section>
+
+                {/* Tips */}
+                <section className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+                  <h3 className="text-lg font-bold text-blue-400 mb-2 flex items-center gap-2">
+                    <span>💡</span> Pro Tips
+                  </h3>
+                  <ul className="space-y-1 text-slate-300 text-sm">
+                    <li className="flex gap-2"><span className="text-blue-400">→</span> Game covers are fetched automatically from RAWG API</li>
+                    <li className="flex gap-2"><span className="text-blue-400">→</span> Hover over game cards to see full title and status</li>
+                    <li className="flex gap-2"><span className="text-blue-400">→</span> Pagination shows 24 games per page (6×4 grid)</li>
+                    <li className="flex gap-2"><span className="text-blue-400">→</span> Mobile responsive - works great on phones and tablets</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
